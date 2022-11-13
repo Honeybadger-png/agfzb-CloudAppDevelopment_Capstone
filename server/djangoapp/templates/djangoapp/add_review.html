@@ -12,5 +12,43 @@
 </head>
     <body>
     <!--Add review form here -->
+    <div class="container">
+        <h2 class="heading-txt" style="font-size: 2em; margin-bottom: 3%; text-align: center;">Add Review for {{dealer.full_name}}</h2>
+        {% if message %}
+        <div class="alert alert-warning"> <!--Style the message paragraph with .alert and .alert-warning class -->
+          {{ message }}
+        </div>
+        {% endif %}
+    
+        <form action="/djangoapp/dealer/{{dealer.id}}/add_review/" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="content"><b>Enter review content here:</b></label>
+                <textarea class="form-control" id="content" name="content" rows="2" required></textarea>
+            </div>
+            <div class="form-group form-check">
+                <input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck">
+                <label for="purchasecheck">Did you purchase the car? </label>
+            </div>
+            <div class="form-group">
+                <label for="car">Select your car:</label>
+                <select name="car" id="car" class="form-select">
+                    {% for car in cars %}
+                        <option selected value={{car.id}}>{{car.car_make.name}}-{{car.name}}-{{ car.year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="purchasedate"><b>Select Your Purchase Date: </b></label>
+                <input class="date-own form-control " style="width: 300px;" type="text" name="purchasedate" id="purchasedate">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <script type="text/javascript">
+            $('.date-own').datepicker({
+               format: 'mm/dd/yyyy'
+             });
+        </script>
+    </div>
     </body>
 </html>
