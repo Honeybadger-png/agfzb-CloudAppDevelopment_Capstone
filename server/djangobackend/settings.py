@@ -27,7 +27,7 @@ DEBUG = True
 
 APPEND_SLASH = True
 
-ALLOWED_HOSTS = ["kvte.eu-de.mybluemix.net"]
+ALLOWED_HOSTS = ["kvte.eu-de.mybluemix.net","localhost"]
 
 
 # Application definition
